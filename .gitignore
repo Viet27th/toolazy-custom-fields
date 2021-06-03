@@ -1,0 +1,11 @@
+.svn
+._
+build
+dist
+node_modules/
+package-lock.json
+.vs
+.vs/*
+src/assets/.DS_Store
+.DS_Store
+.vscode
