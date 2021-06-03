@@ -15,7 +15,7 @@ Support for:
 # ScreenShort
 
 ### List of all the "Post type"
-<img src="root/assets/images/ScreenShot-1.png">
+<img src="https://github.com/Viet27th/toolazy-custom-fields/blob/master/root/assets/screenshot-1.png">
 
 ### Custom fields added to the Woocommerce - Product post type
-<img src="root/assets/images/ScreenShot-2.png">
+<img src="https://github.com/Viet27th/toolazy-custom-fields/blob/master/root/assets/screenshot-2.png">
