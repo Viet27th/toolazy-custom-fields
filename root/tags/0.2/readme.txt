@@ -42,7 +42,13 @@ After create a new custom field, it should be appear on the Create screen of tha
 = 0.1 =
 The first version
 
+= 0.2 =
+Add more custom field type WP Editor
+
 == Upgrade Notice ==
 
 = 0.1 =
 This version allow you create custom fields for Post Type
+
+= 0.2 =
+This version allow you create custom fields with type WP Editor
