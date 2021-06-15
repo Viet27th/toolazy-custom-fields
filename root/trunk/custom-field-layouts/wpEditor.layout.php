@@ -29,22 +29,17 @@ $value = (string) get_post_meta($post->ID, $obj_cf["metaKey"], true);
 
   <?php
    // Start content
+   wp_editor(
+		$value ? $value : $obj_cf["defaultValue"],
+		$obj_cf["isRequired"] ? "toolazy-cf-editor-required-{$obj_cf["metaKey"]}" : "toolazy-cf-editor-{$obj_cf["metaKey"]}",
+		array(
+			"wpautop" => false,
+			"media_buttons" => isset($obj_cf["showMediaButton"]) ? $obj_cf["showMediaButton"] : true,
+			"drag_drop_upload" => true, // Allow drop file into editor to upload
+			"textarea_name" => $obj_cf["metaKey"],
+			"textarea_rows" => $obj_cf["visibleLinesNumber"] ? $obj_cf["visibleLinesNumber"] : 10,
+      "editor_class" => $obj_cf["isRequired"] ? "toolazy-cf-editor-required-{$obj_cf["metaKey"]}" : "toolazy-cf-editor-{$obj_cf["metaKey"]}", // Add class to hidden textarea
+		)
+	);
   ?>
-  <input 
-    class="tcf-w-100"
-    
-    type="<?php echo $obj_cf["inputType"] ?>" 
-    
-    name="<?php echo $obj_cf["metaKey"] ?>"
-
-    value="<?php echo ($value ? htmlentities($value) : htmlentities($obj_cf["defaultValue"])) ?>"
-
-    <?php echo $obj_cf["isRequired"] ? "required" : "" ?>
-
-    placeholder="<?php echo $obj_cf["placeholderText"] ?>"
-
-    <?php if($obj_cf["characterLimit"] ?? false) : ?>
-      maxlength="<?php echo $obj_cf["characterLimit"] ?>"
-    <?php endif; ?>
-  >
 </div>

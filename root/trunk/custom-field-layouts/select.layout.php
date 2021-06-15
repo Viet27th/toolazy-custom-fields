@@ -32,7 +32,7 @@ $value_you_defined = $obj_cf["value"];
    // Start content
   ?>
   <select 
-    class="tcf-w-30"
+    class="tcf-w-100"
     
     name="<?php echo $obj_cf["metaKey"] ?>"
 

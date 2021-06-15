@@ -23,7 +23,7 @@ class ErrorBoundaryComponent extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     // You can also log the error to an error reporting service
-    console.log("Stock Quotes extension - index:", error, errorInfo);
+    console.log("Toolazy Cutom Fields - index:", error, errorInfo);
   }
 
   render() {

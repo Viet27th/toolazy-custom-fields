@@ -48,7 +48,7 @@ if($obj_cf["isRequired"] && !count($value)) {
     <?php foreach($value as $inputValue) : ?>
       <div class="tcf-mi-wrap-input-row">
         <input 
-          class="tcf-w-30"
+          class="tcf-w-100"
 
           type="<?php echo $obj_cf["inputType"] ?>" 
           

@@ -31,6 +31,7 @@ class HomeScreen extends React.Component {
       radio: this.customFieldRadioData,
       file: this.customFieldFileData,
       image: this.customFieldImageData,
+      wpEditor: this.customFieldWpEditor,
     };
   }
 
@@ -412,7 +413,7 @@ class HomeScreen extends React.Component {
       metaKey: data? data.metaKey : "", // It's should be unique in a Post Type
       instructions: data? data.instructions : "",
       isRequired: data? data.isRequired : false,
-      context: data? data.context : "normal", // enum s: normal, side
+      context: data? data.context : "normal", // enums: normal, side
       priority: data? data.priority : "high", // 'high', 'core', 'default', or 'low'.
       wrapperClassAttributes: data? data.wrapperClassAttributes : "",
     };
@@ -559,6 +560,24 @@ class HomeScreen extends React.Component {
   }
 
   /**
+   * Generate object data structure for setting Custom field Image
+   * 
+   * @param {*} data 
+   * @returns Object
+  */
+  customFieldWpEditor = (data) => {
+    let commonAttributes = this.customFieldCommonData(data);
+    let dedicatedAttributes = {
+      metaboxType: data? data.metaboxType : "wpEditor",
+      defaultValue: data? data.defaultValue : "",
+      showMediaButton: data? data.showMediaButton : true,
+      visibleLinesNumber: data? data.visibleLinesNumber : 10,
+    };
+
+    return {...commonAttributes, ...dedicatedAttributes};
+  }
+
+  /**
    * When "metabox type" selection is changed, create new object data and update state.
    * 
    * @param {*} event 
@@ -566,6 +585,7 @@ class HomeScreen extends React.Component {
    * @param {number} customFieldIndex 
    */
   handleChangeMetaboxType = (event, postTypeIndex, customFieldIndex) => {
+    console.log(postTypeIndex, customFieldIndex, event.target.value);
     let postTypeData = this.state.groupPostTypes[postTypeIndex];
     let newCustomFieldData = this.customFieldStructureMapping[event.target.value]();
 
@@ -1111,6 +1131,99 @@ class HomeScreen extends React.Component {
                     </div>
                   </React.Fragment>
                 );
+              case "wpEditor":
+                return (
+                  <React.Fragment>
+                    {/*  */}
+                    <div className="tcf-row tcf-py-15">
+                      <div className="tcf-col-3 tcf-pl-0 tcf-pt-0">
+                        <label 
+                          className="tcf-text-bold h3"
+                        >
+                          Show media button?
+                          <p className="tcf-text-gray tcf-my-0 tcf-h5 tcf-text-normal">
+                            Show media button above Wordpress Editor.
+                          </p>
+                        </label>
+                      </div>
+                      <div className="tcf-col-9 tcf-pr-0 tcf-pt-0">
+                        <div onChange={(event) => this.onChangeValue(event, postTypeIndex, customFieldIndex)}>
+                          <span className="tcf-mr-27">
+                            <input 
+                              type="radio" 
+                              value="true" 
+                              name={"showMediaButton" + "-" + postTypeIndex + "-" + customFieldIndex} 
+                              checked={customFieldData.showMediaButton == true} onChange={() => {}} 
+                              id={"tcf-showMediaButton-yes-" + postTypeIndex + "-" + customFieldIndex}
+                            />
+                            <label htmlFor={"tcf-showMediaButton-yes-" + postTypeIndex + "-" + customFieldIndex}>Yes</label>
+                          </span>
+                          <span className="tcf-mr-27">
+                            <input 
+                              type="radio" 
+                              value="false" 
+                              name={"showMediaButton" + "-" + postTypeIndex + "-" + customFieldIndex}  
+                              checked={customFieldData.showMediaButton == false} onChange={() => {}}
+                              id={"tcf-showMediaButton-no-" + postTypeIndex + "-" + customFieldIndex}
+                            />
+                            <label htmlFor={"tcf-showMediaButton-no-" + postTypeIndex + "-" + customFieldIndex}>No</label>
+                          </span>
+                          
+                        </div>
+                      </div>
+                    </div>
+
+                    {/*  */}
+                    <div className="tcf-row tcf-py-15">
+                      <div className="tcf-col-3 tcf-pl-0 tcf-pt-0">
+                        <label 
+                          className="tcf-text-bold h3" 
+                          htmlFor={"tcf-defaultValue-" + postTypeIndex + "-" + customFieldIndex}
+                        >
+                          Default Value
+                          <p className="tcf-text-gray tcf-my-0 tcf-h5 tcf-text-normal">
+                            The default value in custom field appears on CREAT/EDIT page.
+                          </p>
+                        </label>
+                      </div>
+                      <div className="tcf-col-9 tcf-pr-0 tcf-pt-0">
+                        <input 
+                          name={"defaultValue" + "-" + postTypeIndex + "-" + customFieldIndex}
+                          id={"tcf-defaultValue-" + postTypeIndex + "-" + customFieldIndex}
+                          type="text" 
+                          className="tcf-w-100"
+                          value={customFieldData.defaultValue}
+                          onChange={(event) => this.onChangeValue(event, postTypeIndex, customFieldIndex)}
+                        />
+                      </div>
+                    </div>
+
+                    {/*  */}
+                    <div className="tcf-row tcf-py-15">
+                      <div className="tcf-col-3 tcf-pl-0 tcf-pt-0">
+                        <label 
+                          className="tcf-text-bold h3" 
+                          htmlFor={"tcf-visibleLinesNumber-" + postTypeIndex + "-" + customFieldIndex}
+                        >
+                          Visible Lines Number
+                          <p className="tcf-text-gray tcf-my-0 tcf-h5 tcf-text-normal">
+                            Number of visible lines of custom field type Text Area
+                          </p>
+                        </label>
+                      </div>
+                      <div className="tcf-col-9 tcf-pr-0 tcf-pt-0">
+                        <input 
+                          name={"visibleLinesNumber" + "-" + postTypeIndex + "-" + customFieldIndex}
+                          id={"tcf-visibleLinesNumber-" + postTypeIndex + "-" + customFieldIndex}
+                          type="number" 
+                          className="tcf-w-100"
+                          value={customFieldData.visibleLinesNumber}
+                          onChange={(event) => this.onChangeValue(event, postTypeIndex, customFieldIndex)}
+                        />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                );
             }
           })()
         }
@@ -1135,7 +1248,7 @@ class HomeScreen extends React.Component {
               id={"tcf-context-" + postTypeIndex + "-" + customFieldIndex}
               className="tcf-w-100" 
               value={customFieldData.context}
-              onChange={(event) => this.handleChangeMetaboxType(event, postTypeIndex, customFieldIndex)}
+              onChange={(event) => this.onChangeValue(event, postTypeIndex, customFieldIndex)}
             >
               <option value="normal">Normal</option>
               <option value="side">Side</option>
@@ -1163,7 +1276,7 @@ class HomeScreen extends React.Component {
               id={"tcf-priority-" + postTypeIndex + "-" + customFieldIndex}
               className="tcf-w-100" 
               value={customFieldData.priority}
-              onChange={(event) => this.handleChangeMetaboxType(event, postTypeIndex, customFieldIndex)}
+              onChange={(event) => this.onChangeValue(event, postTypeIndex, customFieldIndex)}
             >
               <option value="high">High</option>
               <option value="core">Core</option>

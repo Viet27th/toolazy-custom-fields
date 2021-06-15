@@ -19,7 +19,6 @@
 // wp.data.dispatch( 'core/editor' ).unlockPostSaving( 'title-lock' ); // Gutenberg enable submit button
 
 jQuery(document).ready(function($) {
-  let message = "";
   let handleChanging = function() {
     $(this).removeClass("tcf-border-red");
     $('input[name=\'' + $(this).attr("name") + '\']').each(function() {
@@ -27,10 +26,41 @@ jQuery(document).ready(function($) {
     })
   };
   let validationAction = function(event) {
+    let message = "";
     let nameArr = [];
     $('.tcf-border-red').each(function() {
       $(this).removeClass("tcf-border-red");
     });
+
+    /**
+     * Get validation for meta box type WP_Editor
+     * wp_editor generate the "tinymce" and hidden "textarea", to verify, we need to get class of "textarea"
+     * and use this class as an id to get tinymce instance and get the value of it. So when you use
+     * wp_editor to create the meta box, you need to match "textarea" class with "tinymce" id.
+     */
+    $("[class*='toolazy-cf-editor-required-']").each(function() {
+      let nodeName = $(this).prop("nodeName"); // Get textarea tag
+      let nodeClassList = $(this).attr("class") // Class list of textarea
+      let classArr = nodeClassList.split(/\s+/);
+      if(nodeName === "TEXTAREA") {
+        $(this).prop('required', true); // Because textare has class required so we need to add required attribute
+        let tinymceIdNeedToGetContent;
+        for(let className of classArr) {
+          if(className.includes("toolazy-cf-editor-required-")) {
+            tinymceIdNeedToGetContent = className;
+            break;
+          }
+        }
+        if(tinymce.editors[tinymceIdNeedToGetContent]) {
+          if(!tinymce.editors[tinymceIdNeedToGetContent].getContent()) {
+            $(this).val("");
+          } else {
+            $(this).val(tinymce.editors[tinymceIdNeedToGetContent].getContent());
+          }
+        }
+      }
+    });
+    // End get validation for meta type wp_editor
 
     $('[required]').each(function() {
       $(this).unbind("keyup", handleChanging );
@@ -49,7 +79,7 @@ jQuery(document).ready(function($) {
       } else {
         $(this).removeClass("tcf-border-red");
       }
-    })
+    });
     
     if(isGutenbergActive()) {
       if(message) {
@@ -68,6 +98,7 @@ jQuery(document).ready(function($) {
     } else {
       if(message) {
         alert(message);
+        event.stopPropagation();
         return false;
       } else {
         return true;
@@ -76,8 +107,7 @@ jQuery(document).ready(function($) {
   }
 
   // Validation For Classic Editor
-  jQuery('#publish').click(function(event) {
-    message = "";
+  jQuery('#publish').click(function(event) {       
     validationAction(event);
   });
 
@@ -98,15 +128,12 @@ jQuery(document).ready(function($) {
       if (document.getElementById('post-title-0')) {
         //Actual functions goes here
         jQuery(".editor-post-publish-button, .editor-post-publish-panel__toggle").click(function(event) {
-          message = "";
-          
           setTimeout(function() {
             // When create a new post and click to "publish" button, a panel appear and real "publish" button
             // is inside this panel so we need to add click event again for this button.
             let publishPanel = jQuery(".editor-post-publish-panel");
             if(publishPanel.length) {
               jQuery(".editor-post-publish-panel .editor-post-publish-button").click(function(event) {
-                message = "";
                 validationAction(event);
               })
             }

@@ -25,12 +25,12 @@ let DecodeTokenBase64 = (token) => {
  * @param {String} [color=Color.lightYellow]     [description]
  */
 let ShowLog = (message = "", backgroundColor = ColorConfig.black, color = ColorConfig.lightYellow) => {
-  console.log(`%c Stock Quotes extension: ${message}`, `background: ${backgroundColor}; color: ${color}`);
+  console.log(`%c Toolazy Cutom Fields: ${message}`, `background: ${backgroundColor}; color: ${color}`);
 };
 
 let WindowConfirm = (message = "") => {
   let promise = new Promise((resolve) => {
-    if(confirm(`Stock Quotes extension: ${message}`)) {
+    if(confirm(`Toolazy Cutom Fields: ${message}`)) {
       resolve(true);
     } else {
       resolve(false);
@@ -48,7 +48,7 @@ let Delay = (millisecond) => {
 };
 
 let WindowAlert = (message = "") => {
-  alert(`Stock Quotes extension: ${message}`);
+  alert(`Toolazy Cutom Fields: ${message}`);
 };
 
 let RandomValue = (id = "") => {

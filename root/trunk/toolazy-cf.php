@@ -43,6 +43,7 @@ if (!class_exists('ToolazyCf')) :
       "checkbox" => "array",
       "file" => "array",
       "image" => "array",
+      "wpEditor" => "text",
     );
 
     /**
@@ -253,7 +254,11 @@ if (!class_exists('ToolazyCf')) :
             }
 
             if($this->custom_field_types[$meta_box_config["metaboxType"]] === "text") {
-              $validatedValue = sanitize_textarea_field($_POST[$meta_box_config["metaKey"]]);
+              if($meta_box_config["metaboxType"] === "wpEditor") {
+                $validatedValue = $_POST[$meta_box_config["metaKey"]];
+              } else {
+                $validatedValue = sanitize_textarea_field($_POST[$meta_box_config["metaKey"]]);
+              }
             }
           } else {
             // If meta box has been registered for this post type but not found on submit incomming

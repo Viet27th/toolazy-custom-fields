@@ -92,6 +92,10 @@ class TCF_CustomFields_Api extends TCF_Base_Api {
         "name" => "Image",
         "value" => "image",
       ),
+      array(
+        "name" => "WP Editor",
+        "value" => "wpEditor",
+      ),
     ];
 
     return parent::sendSuccess($data);

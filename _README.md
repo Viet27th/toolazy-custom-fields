@@ -8,9 +8,15 @@
 ## Remove ._ files (Files are created automatically on Mac OS)
 Open terminal, go to the root folder of project and run : "dot_clean -n ."
 
-## Fix WordPress Asking for FTP Credentials
+## Fix Wordpress Asking for FTP Credentials
 Open wp-config.php add this line: "define( 'FS_METHOD', 'direct' );"
-This function allows the current user to edit or install files in your folder
+This declare allows the current user to edit or install files in your folder
+
+## Fix Wordpress Visual Editor Not Working
+Reference: https://siteefy.com/wordpress-visual-editor-not-working/
+Sometimes "classic editor" is not woking on "block editor". In my case is when I add a custom field type "wp editor" to post type is "post" which using "Gutenberg", I can't focus to Visual tab on editor to edit content.
+To fix it:
+Open wp-config.php add this line: "define('CONCATENATE_SCRIPTS', false);"
 
 ## To write log
 Open wp-config.php 
