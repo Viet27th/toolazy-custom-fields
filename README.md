@@ -10,6 +10,7 @@ Support for:
 - Select
 - File
 - Image
+- WP Editor
 
 
 # ScreenShort
