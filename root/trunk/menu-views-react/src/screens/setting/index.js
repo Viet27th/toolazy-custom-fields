@@ -5,7 +5,7 @@ import {CommonService, CustomFieldService} from "../../services";
 import {CommonUtilities, RegexUtilities} from "../../utilities";
 import {LoadingSpinnerComponent} from "../../components";
 
-class HomeScreen extends React.Component {
+class SettingScreen extends React.Component {
   constructor(props) {
     super(props);
 
@@ -585,7 +585,6 @@ class HomeScreen extends React.Component {
    * @param {number} customFieldIndex 
    */
   handleChangeMetaboxType = (event, postTypeIndex, customFieldIndex) => {
-    console.log(postTypeIndex, customFieldIndex, event.target.value);
     let postTypeData = this.state.groupPostTypes[postTypeIndex];
     let newCustomFieldData = this.customFieldStructureMapping[event.target.value]();
 
@@ -1389,7 +1388,7 @@ class HomeScreen extends React.Component {
 
 }
 
-HomeScreen.propTypes = {
+SettingScreen.propTypes = {
 };
 
-export default HomeScreen;
+export default SettingScreen;
