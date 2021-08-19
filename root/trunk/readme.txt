@@ -45,6 +45,9 @@ The first version
 = 0.2 =
 Add more custom field type WP Editor
 
+= 0.3 =
+Fix some syntax bugs
+
 == Upgrade Notice ==
 
 = 0.1 =

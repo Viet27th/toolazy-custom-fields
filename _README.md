@@ -61,3 +61,4 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
   edit version in trunk/toolazy-cf.php file 
 - Push all new code to svn /trunk
 - Push all older version to svn /tags/{folder_name_match_with_version}
+- Commit code to SVN via SmartSVN or any -> done!
