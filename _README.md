@@ -57,5 +57,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ## Publish plugin
 - svn /assets to save plugin banner, plugin icon, screenshorts
+- edit trunk/readme.txt file to describe for new version
+  edit version in trunk/toolazy-cf.php file 
 - Push all new code to svn /trunk
 - Push all older version to svn /tags/{folder_name_match_with_version}

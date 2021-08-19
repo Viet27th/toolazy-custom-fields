@@ -1,0 +1,22 @@
+.required {
+  color: red;
+}
+.tcf-hidden-input {
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  margin: 0 !important;
+}
+
+.tcf-border-red {
+  border-color: red !important;
+}
+
+.tcf-w-30 {
+  width: 30%;
+}
+
+.tcf-w-100 {
+  width: 100%;
+}
