@@ -4,7 +4,7 @@ Donate link: https://paypal.me/viet27th?locale.x=en_US
 Tags: toolazy custom field, wordpress custom field
 Requires at least: 4.7
 Tested up to: 5.7.1
-Stable tag: 0.2
+Stable tag: 0.3
 Requires PHP: 7.2
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
