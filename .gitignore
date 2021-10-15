@@ -9,3 +9,4 @@ package-lock.json
 src/assets/.DS_Store
 .DS_Store
 .vscode
+.history
