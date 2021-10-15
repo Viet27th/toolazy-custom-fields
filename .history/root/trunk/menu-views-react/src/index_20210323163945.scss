@@ -22,16 +22,25 @@ $breakpoints: (
 
 $size: 100;
 
-@for $i from 0 through $size {
+@each $breakpoint_key, $breakpoint_value in $breakpoints {
   @each $property_key, $property_value in $properties {
-    .tcf-#{$property_key}-#{$i} {
-      #{$property_value}: #{$i}px !important;
-    }
 
     @each $side_key, $side_value in $sides {
-      // Run only one time
-      @if $i == 0 {
-        .tcf-#{$property_key}#{$side_key}-auto {
+
+      .tcf-#{$property_key}#{$side_key}-auto {
+        @if $side_key == x {
+          #{$property_value}-left: auto !important;
+          #{$property_value}-right: auto !important;
+        } @else if $side_key == y {
+          #{$property_value}-top: auto !important;
+          #{$property_value}-bottom: auto !important;
+        } @else {
+          #{$property_value}-#{$side_value}: auto !important;
+        }
+      }
+
+      @media (max-width: #{$breakpoint_value}) {
+        .tcf-#{$property_key}#{$side_key}-#{$breakpoint_key}-auto {
           @if $side_key == x {
             #{$property_value}-left: auto !important;
             #{$property_value}-right: auto !important;
@@ -43,18 +52,40 @@ $size: 100;
           }
         }
       }
-      
-      .tcf-#{$property_key}#{$side_key}-#{$i} {
-        @if $side_key == x {
-          #{$property_value}-left: #{$i}px !important;
-          #{$property_value}-right: #{$i}px !important;
-        } @else if $side_key == y {
-          #{$property_value}-top: #{$i}px !important;
-          #{$property_value}-bottom: #{$i}px !important;
-        } @else {
-          #{$property_value}-#{$side_value}: #{$i}px !important;
+
+      @for $i from 0 through $size {
+
+        .tcf-#{$property_key}-#{$i} {
+          #{$property_value}: #{$i}px !important;
         }
-      } 
+        
+        .tcf-#{$property_key}#{$side_key}-#{$i} {
+          @if $side_key == x {
+            #{$property_value}-left: #{$i}px !important;
+            #{$property_value}-right: #{$i}px !important;
+          } @else if $side_key == y {
+            #{$property_value}-top: #{$i}px !important;
+            #{$property_value}-bottom: #{$i}px !important;
+          } @else {
+            #{$property_value}-#{$side_value}: #{$i}px !important;
+          }
+        }
+
+        @media (max-width: #{$breakpoint_value}) {
+          .tcf-#{$property_key}#{$side_key}-#{$breakpoint_key}-#{$i} {
+            @if $side_key == x {
+              #{$property_value}-left: #{$i}px !important;
+              #{$property_value}-right: #{$i}px !important;
+            } @else if $side_key == y {
+              #{$property_value}-top: #{$i}px !important;
+              #{$property_value}-bottom: #{$i}px !important;
+            } @else {
+              #{$property_value}-#{$side_value}: #{$i}px !important;
+            }
+          }
+        }
+        
+      }
     }
   }
 }

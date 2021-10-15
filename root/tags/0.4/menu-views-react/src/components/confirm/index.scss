@@ -1,0 +1,101 @@
+$breakpoint-mobile: 576px;
+$breakpoint-tablet: 768px;
+$breakpoint-small-desktop: 992px;
+$breakpoint-regular-desktop: 1200px;
+
+$green: #2ecc71;
+$red: #e74c3c;
+$white: #FFFFFF;
+$black: #000;
+
+.ParentConfirmComponent {
+  max-height: 100vh;
+  overflow: hidden;
+  &:focus, & *:focus {
+    outline: none;
+  }
+
+  .ConfirmComponent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 999999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .v-model {
+      background-color: $white;
+      color: $black;
+      border-radius: 5px;
+      padding: 20px 15px;
+
+      .v-model__head {
+        padding-bottom: 9px;
+        font-size: 21px;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+      }
+
+      .v-model__body {
+        margin: 11px 0 27px;
+        font-size: 14px;
+      }
+
+      .v-model__footer {
+        text-align: right;
+        button {
+          border: none;
+          outline: none;
+          border-radius: 5px;
+          color: $white;
+  				font-weight: 300;
+  				overflow: hidden;
+          padding: 11px 27px;
+          min-width: 95px;
+          margin-left: 9px;
+          &.btn-cancel {
+            background-color: $red;
+          }
+          &.btn-confirm {
+            background-color: $green;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-mobile - 1) {
+  .v-model {
+    width: 85%;
+  }
+}
+
+@media (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet -1) {
+  .v-model {
+    width: 350px;
+  }
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .v-model {
+    &.v-model--extral-small {
+      width: 30%;
+    }
+    &.v-model--small {
+      width: 40%;
+    }
+    &.v-model--medium {
+      width: 50%;
+    }
+    &.v-model--large {
+      width: 70%;
+    }
+    &.v-model--extral-large {
+      width: 85%;
+    }
+  }
+}

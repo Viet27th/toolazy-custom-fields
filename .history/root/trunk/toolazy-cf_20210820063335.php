@@ -3,7 +3,7 @@
  * Plugin Name:       Toolazy Custom Fields
  * Plugin URI:        https://wordpress.org/plugins/toolazy-custom-fields
  * Description:       Create custom fields for any post types.
- * Version:           0.4
+ * Version:           0.3
  * Author:            viet27th
  * Author URI:        https://github.com/Viet27th/toolazy-custom-fields
  * Text Domain:       toolazy-custom-fields
@@ -28,7 +28,7 @@ if (!defined("TCF_URL_PREFIX")) {
 if (!class_exists('ToolazyCf')) :
   class ToolazyCf {
     /** @var string The plugin version number. */
-    var $version = '0.4';
+    var $version = '0.3';
 
     /** @var array The plugin data array. */
     var $data = array();

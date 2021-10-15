@@ -4,7 +4,7 @@ Donate link: https://paypal.me/viet27th?locale.x=en_US
 Tags: toolazy custom field, wordpress custom field
 Requires at least: 4.7
 Tested up to: 5.7.1
-Stable tag: 0.4
+Stable tag: 0.3
 Requires PHP: 7.2
 License: GPL-3.0
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -48,9 +48,6 @@ Add more custom field type WP Editor
 = 0.3 =
 Fix some syntax bugs
 
-= 0.4 =
-Customize CSS
-
 == Upgrade Notice ==
 
 = 0.1 =
@@ -61,6 +58,3 @@ This version allow you create custom fields with type WP Editor
 
 = 0.3 =
 Fix some syntax bugs
-
-= 0.4 =
-Customize CSS

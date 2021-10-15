@@ -48,9 +48,6 @@ Add more custom field type WP Editor
 = 0.3 =
 Fix some syntax bugs
 
-= 0.4 =
-Customize CSS
-
 == Upgrade Notice ==
 
 = 0.1 =
@@ -61,6 +58,3 @@ This version allow you create custom fields with type WP Editor
 
 = 0.3 =
 Fix some syntax bugs
-
-= 0.4 =
-Customize CSS
